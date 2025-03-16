@@ -1,10 +1,19 @@
 $hadesDir = "C:\Program Files (x86)\Steam\steamapps\common\Hades II\Content"
 $modName = "FastAreaExit"
+$targetScript = "RoomPresentation.lua"
+$replacementScript = "LeaveRoomPresentation.lua"
+
+$functionReplace = @"
+.*function LeaveRoomPresentation\( currentRun, exitDoor \)
+([\s\S]*?)
+end.*
+"@
 
 $moddedTag = " --" + $modName
-$lines = Get-Content "$hadesDir\Scripts\RoomPresentation.lua" -Raw
+$luaFile = "$hadesDir\Scripts\$targetScript"
+$lines = Get-Content $luaFile -Raw
 
-$newFunction = Get-Content .\LeaveRoomPresentation.lua -Raw
+$newFunction = Get-Content $replacementScript -Raw
 $newFunction += $moddedTag
 
 if ($lines -match $moddedTag)
@@ -14,12 +23,6 @@ if ($lines -match $moddedTag)
 }
 
 # Wrap matched functions with --[[ and --]] and append the new functions
-$functionReplace = @"
-.*function LeaveRoomPresentation\( currentRun, exitDoor \)
-([\s\S]*?)
-end.*
-"@
-
 $lines = $lines -replace $functionReplace, "--[[`$&--]]`n$newFunction`n"
 $lines | Set-Content -Encoding Default $luaFile
 
