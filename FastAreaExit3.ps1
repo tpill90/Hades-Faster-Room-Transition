@@ -3,7 +3,7 @@ $modName = "FastAreaExit"
 $targetScript = "PresentationBiomeO.lua"
 $replacementScript = "ShipsLeaveRoomPresentation.lua"
 
-$functionReplaces = @"
+$functionReplace = @"
 .*function ShipsLeaveRoomPresentation\( currentRun, exitDoor \)
 ([\s\S]*?)
 end.*
