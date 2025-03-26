@@ -16,8 +16,6 @@ function LeaveRoomPresentation( currentRun, exitDoor )
 		DestroyDoorRewardPresenation( door )
 		if door.ExitDoorOpenAnimation ~= nil then
 			SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
-			thread( DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, } )
-			wait( 0.7 )
 		end
 	end
 
@@ -46,7 +44,7 @@ function LeaveRoomPresentation( currentRun, exitDoor )
 		if exitDoorId ~= nil then
 			AngleTowardTarget({ Id = currentRun.Hero.ObjectId, DestinationId = exitDoorId })
 		end
-		SetAlpha({ Id = currentRun.Hero.ObjectId, Fraction = 0, Duration = 1.0 })
+		SetAlpha({ Id = currentRun.Hero.ObjectId, Fraction = 0, Duration = .15 })
 		SetAnimation({ DestinationId = CurrentRun.Hero.ObjectId, Name = currentRun.CurrentRoom.ExitAnimation or RoomData.BaseSecret.ExitAnimation })
 		CreateAnimation({ DestinationId = CurrentRun.Hero.ObjectId, Name = currentRun.CurrentRoom.ExitVfx or RoomData.BaseSecret.ExitVfx })
 		if door ~= nil and door.ExitPortalSound then
@@ -56,17 +54,12 @@ function LeaveRoomPresentation( currentRun, exitDoor )
 
 	LeaveRoomAudio( currentRun, exitDoor )
 
-	wait(0.4)
-
 	if door ~= nil and door.ExitDoorCloseAnimation ~= nil then
 		SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorCloseAnimation })
-		thread( DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.2 }, } )
 	end
 
-	wait(0.2)
+	wait(0.02)
 
-	--SetAlpha({ Id = currentRun.Hero.ObjectId, Fraction = 0, Duration = 0.3 })
-	FullScreenFadeOutAnimation( currentRun.CurrentRoom.FadeOutAnimation )
 	ShowInterMapComponents()
 
 	AllowShout = false
