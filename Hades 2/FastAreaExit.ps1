@@ -13,7 +13,7 @@ $moddedTag = " --" + $modName
 $luaFile = "$hadesDir\Scripts\$targetScript"
 $lines = Get-Content $luaFile -Raw
 
-$newFunction = Get-Content $replacementScript -Raw
+$newFunction = Get-Content "Lua\$replacementScript" -Raw
 $newFunction += $moddedTag
 
 if ($lines -match $moddedTag)
