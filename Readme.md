@@ -1,3 +1,15 @@
-Hades.exe /DebugDraw=true /DebugKeysEnabled=true /EnabledDebugDisplays=Default,Script,Audio,Camera,Units,Things,Network,Input,Console,MissingTextures,TextSystem
+# Mod name
 
-Cycle through debug views with Ctrl+D
+Hades II mod allowing to do some super duper thing.
+
+## Features
+
+- Wow.
+- Much cool.
+  - Very doge.
+
+## Install
+
+- Do this.
+- Do that.
+  - Nope, not that.
