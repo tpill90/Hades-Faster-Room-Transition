@@ -1,3 +1,4 @@
+#TODO this breaks oceanus
 $hadesDir = "C:\Program Files (x86)\Steam\steamapps\common\Hades II\Content"
 $modName = "FastAreaExit"
 $targetScript = "PresentationBiomeG.lua"

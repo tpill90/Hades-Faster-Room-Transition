@@ -3,7 +3,7 @@ function ExitBiomeGRoomPresentation( currentRun, exitDoor )
 	ToggleCombatControl( { "AdvancedTooltip" } , false, "LeaveRoom" )
 	HideCombatUI( "ExitBiomeGRoomPresentation" )
 	LeaveRoomAudio( currentRun, exitDoor )
-	thread( PlayerUseBiomeGDoorPresentation, exitDoor )
+
 	if exitDoor ~= nil then
 		if exitDoor.AdditionalIcons ~= nil and not IsEmpty( exitDoor.AdditionalIcons ) then
 			Destroy({ Ids = GetAllValues( exitDoor.AdditionalIcons ) })
@@ -14,26 +14,41 @@ function ExitBiomeGRoomPresentation( currentRun, exitDoor )
 			SetAnimation({ DestinationId = exitDoor.ObjectId, Name = exitDoor.ExitDoorOpenAnimation })
 		end
 	end
+
 	thread( PlayVoiceLines, HeroVoiceLines.OceanusExitVoiceLines, true )
 
+	Stop({ Id = CurrentRun.Hero.ObjectId })
+	wait (0.01)
 
-	if ScreenAnchors.Transition ~= nil then
-		Destroy({Id = ScreenAnchors.Transition})
-	end
-	AdjustColorGrading({ Name = "Dusk", Duration = 0.15 })
+	PlaySound({ Name = "/SFX/Menu Sounds/GeneralWhooshMENULoudLow" })
+	local unequipAnimation = GetEquippedWeaponValue("UnequipAnimation") or "MelinoeIdleWeaponless"
+	SetAnimation({ Name = unequipAnimation, DestinationId = CurrentRun.Hero.ObjectId })
+	PanCamera({ Id = exitDoor.ObjectId, Duration = 1.1, OffsetY = -50, EaseOut = 0 })
 
-	ScreenAnchors.Transition = CreateScreenObstacle({Name = "BlankObstacle", X = ScreenCenterX, Y = ScreenCenterY, Group = "Overlay" })
-	SetAnimation({ DestinationId = ScreenAnchors.Transition, Name = "RoomTransitionIn" })
-	local uniformAspectScale = ScreenScaleX
-	if ScreenScaleY > ScreenScaleX then
-		uniformAspectScale = ScreenScaleY
-	end
-	if not ScreenState.NativeAspetRatio then
-		uniformAspectScale = uniformAspectScale + 0.1 -- Scaling isn't pixel-perfect, add some buffer
-	end
-	SetScale({ Id = ScreenAnchors.Transition, Fraction = uniformAspectScale })
-	wait(0.15)
+	-- wait( 0.5 )
 
+	SetAnimation({ Name = "Melinoe_Drop_Exit_Start", DestinationId = CurrentRun.Hero.ObjectId, SpeedMultiplier = 0.5 })
+	SetThingProperty({ DestinationId = CurrentRun.Hero.ObjectId, Property = "Tallness", Value = 400 })
+
+	-- wait( 0.35 )
+
+	PlaySound({ Name = "/VO/MelinoeEmotes/EmoteEvading" })
+	local args = {}
+	args.SuccessDistance = 20
+	args.DisableCollision = true
+	local exitPath = {}
+	table.insert( exitPath, exitDoor.ObjectId )
+	thread( MoveHeroAlongPath, exitPath, args )
+
+	-- wait( 0.20 )
+
+	thread( SlightDescent )
+	PanCamera({ Id = exitDoor.ObjectId, Duration = 1.2, OffsetY = 85, Retarget = true})
+	thread( DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.25 }, } )
+
+	FullScreenFadeOutAnimation( "RoomTransitionIn_Down" )
+
+	WaitForSpeechFinished()
 
 	RemoveInputBlock({ Name = "LeaveRoomPresentation" })
 	ToggleCombatControl( { "AdvancedTooltip" } , true, "LeaveRoom" )
