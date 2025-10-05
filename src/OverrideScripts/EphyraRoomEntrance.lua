@@ -2,7 +2,8 @@
 
 -- Ephyra - Animation when entering a room
 ModUtil.Path.Override("HubCombatRoomEntrance", function(currentRun, exitDoor)
-    print("EphyraRoomEntrance")
+    print("Ephyra Room Entrance")
+
     local exitDoorId = exitDoor.ObjectId
     local door = MapState.OfferedExitDoors[exitDoorId]
 

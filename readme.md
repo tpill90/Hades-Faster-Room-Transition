@@ -39,7 +39,7 @@ That's it, you are now ready to [**develop**](#develop).
 
 * VSCode install lua extension by sumneko
 * Go on the Workspace tab, and in the search bar at the top type library (add a space before). Scroll down until you find Lua > Workspace Library. There you need to add two items : Content/Scripts/ and Mods/.
-* Then search for preload and change Lua > Workspace: Preload File Size from 500 to 3000.hen search for preload and change Lua > Workspace: Preload File Size from 500 to 3000.
+* Then search for preload and change Lua > Workspace: Preload File Size from 500 to 3000
 
 * Add to your run parameters in Steam.  Will let you see debug output from the game files  `/DebugDraw=true /DebugKeysEnabled=true /EnabledDebugDisplays=Default,Console,MissingTextures,TextSystem`
 
