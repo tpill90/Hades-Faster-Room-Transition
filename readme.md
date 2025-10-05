@@ -39,13 +39,10 @@ That's it, you are now ready to [**develop**](#develop).
 
 ## Develop
 
-- **[WIP]** This is where we should point at documentation on how to develop the mod (e.g. how to hot reload / build, how to test).
-- Make sure to continuously update the `README.md` and `CHANGELOG.md` files as you add, change, or remove features.
-  - This ensures you won't forget to document them.
-  - For good practices on changelog maintenance, please see [Keep a Changelog](https://keepachangelog.com/).
-- Any git workflow of your choice can be used, however it is recommended that you plan on making releases from your repository's default branch (`main` by default).
+* Create symlink with _CreateSymlink.ps1
+* src folder must have a manifest.json with correct dependencies defined.
+* Watch logs with `_TailLogs.ps1`
 
-Hack away, and [**release**](#release) when ready.
 
 ## Release
 

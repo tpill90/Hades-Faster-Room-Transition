@@ -1,2 +1,2 @@
-New-Item -Path "C:\Users\Tim\AppData\Roaming\r2modmanPlus-local\HadesII\profiles\Default\ReturnOfModding\plugins\TestMod" `
-            -Force -ItemType SymbolicLink -Value "C:\Users\Tim\Dropbox\Programming\Gaming\Hades Mods"
+New-Item -Path "C:\Users\Tim\AppData\Roaming\r2modmanPlus-local\HadesII\profiles\Default\ReturnOfModding\plugins\tpill90-TestMod" `
+            -Force -ItemType SymbolicLink -Value "C:\Users\Tim\Dropbox\Programming\Gaming\Hades Mods\src"
