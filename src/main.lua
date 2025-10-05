@@ -1,7 +1,5 @@
 ---@meta _
--- grabbing our dependencies,
--- these funky (---@) comments are just there
---	 to help VS Code find the definitions of things
+-- #region grabbing our dependencies,
 
 ---@diagnostic disable-next-line: undefined-global
 local mods = rom.mods
@@ -18,7 +16,7 @@ rom = rom
 _PLUGIN = _PLUGIN
 
 -- get definitions for the game's globals
----@module 'game'
+---@module 'SGG_Modding-Hades2GameDef-Globals'
 game = rom.game
 ---@module 'game-import'
 import_as_fallback(game)
@@ -38,18 +36,23 @@ config = chalk.auto 'config.lua'
 -- ^ this updates our `.cfg` file in the config folder!
 public.config = config -- so other mods can access our config
 
+-- #endregion
+
+-- what to do when we are ready, but not re-do on reload.
 local function on_ready()
-	-- what to do when we are ready, but not re-do on reload.
-	if config.enabled == false then return end
-	print('Hello world')
-	import 'ready.lua'
+    if config.enabled == false then return end
+
+    import 'ready.lua'
+    import "OverrideScripts/LeaveRoomPresentation.lua"
 end
 
+-- what to do when we are ready, but also again on every reload.
+-- only do things that are safe to run over and over.
 local function on_reload()
-	-- what to do when we are ready, but also again on every reload.
-	-- only do things that are safe to run over and over.
-	print('Hello world')
-	import 'reload.lua'
+    if config.enabled == false then return end
+
+    mod = modutil.mod.Mod.Register(_PLUGIN.guid)
+    import 'reload.lua'
 end
 
 -- this allows us to limit certain functions to not be reloaded.
@@ -57,5 +60,5 @@ local loader = reload.auto_single()
 
 -- this runs only when modutil and the game's lua is ready
 modutil.once_loaded.game(function()
-	loader.load(on_ready, on_reload)
+    loader.load(on_ready, on_reload)
 end)
