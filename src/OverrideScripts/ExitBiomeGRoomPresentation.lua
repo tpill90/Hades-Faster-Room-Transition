@@ -1,6 +1,8 @@
 ---@diagnostic disable: undefined-global
 
-function ExitBiomeGRoomPresentation(currentRun, exitDoor)
+-- Oceanus - Jumping down the holes
+ModUtil.Path.Override("ExitBiomeGRoomPresentation", function(currentRun, exitDoor)
+    print("ExitBiomeGRoomPresentation")
     AddInputBlock({ Name = "LeaveRoomPresentation" })
     ToggleCombatControl({ "AdvancedTooltip" }, false, "LeaveRoom")
     HideCombatUI("ExitBiomeGRoomPresentation")
@@ -54,4 +56,4 @@ function ExitBiomeGRoomPresentation(currentRun, exitDoor)
 
     RemoveInputBlock({ Name = "LeaveRoomPresentation" })
     ToggleCombatControl({ "AdvancedTooltip" }, true, "LeaveRoom")
-end
+end)

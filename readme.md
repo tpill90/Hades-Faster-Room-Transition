@@ -2,14 +2,6 @@
 
 This mod template can be used as basis for creating your own Hades II mods and publishing them on [Thunderstore](https://thunderstore.io/).
 
-## Prerequisites
-
-- Basic git knowledge.
-- Basic Markdown knowledge.
-- A GitHub account.
-- A Thunderstore team / namespace.
-  - If you need to create one, login on Thunderstore using your GitHub account.
-
 ## Setup
 
 - Create a new GitHub repository to host your mod.
@@ -39,9 +31,19 @@ That's it, you are now ready to [**develop**](#develop).
 
 ## Develop
 
+<!-- TODO mess with thunderstore cli.  Look at how the publish works and do it locally -->
+<!-- TODO mess with loading a mod manually in r2modman -->
 * Create symlink with _CreateSymlink.ps1
 * src folder must have a manifest.json with correct dependencies defined.
 * Watch logs with `_TailLogs.ps1`
+
+* VSCode install lua extension by sumneko
+* Go on the Workspace tab, and in the search bar at the top type library (add a space before). Scroll down until you find Lua > Workspace Library. There you need to add two items : Content/Scripts/ and Mods/.
+* Then search for preload and change Lua > Workspace: Preload File Size from 500 to 3000.hen search for preload and change Lua > Workspace: Preload File Size from 500 to 3000.
+
+* Add to your run parameters in Steam.  Will let you see debug output from the game files  `/DebugDraw=true /DebugKeysEnabled=true /EnabledDebugDisplays=Default,Console,MissingTextures,TextSystem`
+
+Cycle through debug views with Ctrl+D, can use `DebugPrint()` in the game scripts to see whats going on.
 
 
 ## Release

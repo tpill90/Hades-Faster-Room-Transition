@@ -43,7 +43,10 @@ local function on_ready()
     if config.enabled == false then return end
 
     import 'ready.lua'
+    import "OverrideScripts/EphyraRoomEntrance.lua"
+    import "OverrideScripts/ExitBiomeGRoomPresentation.lua"
     import "OverrideScripts/LeaveRoomPresentation.lua"
+    import "OverrideScripts/ShipsLeaveRoomPresentation.lua"
 end
 
 -- what to do when we are ready, but also again on every reload.
@@ -53,6 +56,10 @@ local function on_reload()
 
     mod = modutil.mod.Mod.Register(_PLUGIN.guid)
     import 'reload.lua'
+    import "OverrideScripts/EphyraRoomEntrance.lua"
+    import "OverrideScripts/ExitBiomeGRoomPresentation.lua"
+    import "OverrideScripts/LeaveRoomPresentation.lua"
+    import "OverrideScripts/ShipsLeaveRoomPresentation.lua"
 end
 
 -- this allows us to limit certain functions to not be reloaded.

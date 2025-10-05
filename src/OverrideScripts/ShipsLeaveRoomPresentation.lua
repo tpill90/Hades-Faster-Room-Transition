@@ -1,6 +1,8 @@
 ---@diagnostic disable: undefined-global
 
-function ShipsLeaveRoomPresentation(currentRun, exitDoor)
+-- This is when you leave a room while on the ships in Thessaly
+ModUtil.Path.Override("ShipsLeaveRoomPresentation", function(currentRun, exitDoor)
+    print("ShipsLeaveRoomPresentation")
     AddInputBlock({ Name = "ShipsLeaveRoomPresentation" })
     ToggleCombatControl({ "AdvancedTooltip" }, false, "LeaveRoom")
     HideCombatUI("ShipsLeaveRoomPresentation")
@@ -74,4 +76,4 @@ function ShipsLeaveRoomPresentation(currentRun, exitDoor)
 
     ToggleCombatControl({ "AdvancedTooltip" }, true, "LeaveRoom")
     RemoveInputBlock({ Name = "ShipsLeaveRoomPresentation" })
-end
+end)

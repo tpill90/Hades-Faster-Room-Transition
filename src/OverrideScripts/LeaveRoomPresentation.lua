@@ -21,6 +21,7 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
     local heroExitIds = GetIdsByType({ Name = "HeroExit" })
     local heroExitPointId = GetClosest({ Id = exitDoorId, DestinationIds = heroExitIds, Distance = 800 })
     if heroExitPointId > 0 then
+        print("heroExitPoint")
         if not currentRun.CurrentRoom.BlockExitPan then
             PanCamera({ Id = heroExitPointId, Duration = 10.0 })
         end
