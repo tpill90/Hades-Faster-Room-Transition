@@ -41,14 +41,14 @@ public.config = config -- so other mods can access our config
 local function on_ready()
 	-- what to do when we are ready, but not re-do on reload.
 	if config.enabled == false then return end
-	
+	print('Hello world')
 	import 'ready.lua'
 end
 
 local function on_reload()
 	-- what to do when we are ready, but also again on every reload.
 	-- only do things that are safe to run over and over.
-	
+	print('Hello world')
 	import 'reload.lua'
 end
 

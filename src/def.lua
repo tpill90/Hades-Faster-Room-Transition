@@ -1,9 +1,9 @@
----@meta AuthorName-ModName
+---@meta tpill90-TestMod
 local public = {}
 
 -- document whatever you made publicly available to other plugins here
 -- use luaCATS annotations and give descriptions where appropriate
---  e.g. 
+--  e.g.
 --	---@param a integer helpful description
 --	---@param b string helpful description
 --	---@return table c helpful description
