@@ -5,23 +5,28 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
     print("LeaveRoomPresentation")
     local exitDoorId = exitDoor.ObjectId
     local door = MapState.OfferedExitDoors[exitDoorId]
+    local nextRoomData = nil
+    local roomData = RoomData[CurrentRun.CurrentRoom.Name] or CurrentRun.CurrentRoom
 
     AddInputBlock({ Name = "LeaveRoomPresentation" })
+
+    SetThreadWait("InfoBanner", 0.01)
 
     ToggleCombatControl({ "AdvancedTooltip" }, false, "LeaveRoom")
     HideCombatUI("LeaveRoomPresentation")
 
     if door ~= nil then
+        nextRoomData = RoomData[door.Room.Name] or door.Room
         thread(DestroyDoorRewardPresenation, door)
         if door.ExitDoorOpenAnimation ~= nil then
             SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
+            thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
+            wait(0.7)
         end
     end
-
     local heroExitIds = GetIdsByType({ Name = "HeroExit" })
     local heroExitPointId = GetClosest({ Id = exitDoorId, DestinationIds = heroExitIds, Distance = 800 })
     if heroExitPointId > 0 then
-        print("heroExitPoint")
         if not currentRun.CurrentRoom.BlockExitPan then
             PanCamera({ Id = heroExitPointId, Duration = 10.0 })
         end
@@ -38,7 +43,7 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
         if exitDoorId ~= nil then
             AngleTowardTarget({ Id = currentRun.Hero.ObjectId, DestinationId = exitDoorId })
         end
-        SetAlpha({ Id = currentRun.Hero.ObjectId, Fraction = 0, Duration = 0.15 })
+        SetAlpha({ Id = currentRun.Hero.ObjectId, Fraction = 0, Duration = 1.0 })
         SetAnimation({
             DestinationId = CurrentRun.Hero.ObjectId,
             Name = currentRun.CurrentRoom.ExitAnimation or
@@ -58,34 +63,25 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
     if exitDoor.Room.ExitTowardsFunctionName ~= nil then
         CallFunctionName(exitDoor.Room.ExitTowardsFunctionName, exitDoor, exitDoor.Room.ExitTowardsFunctionArgs)
     end
+
+    wait(0.4)
+
     if door ~= nil and door.ExitDoorCloseAnimation ~= nil then
         SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorCloseAnimation })
+        thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.2 }, })
     end
 
+    wait(0.02)
 
-    if ScreenAnchors.Transition ~= nil then
-        Destroy({ Id = ScreenAnchors.Transition })
+    if HasEventFunctionName(roomData.LeavePostPresentationEvents, "BiomeMapPresentation") then
+        FullScreenFadeOutAnimation()
+    else
+        FullScreenFadeOutAnimation(nextRoomData.LeavePrevRoomWipeAnimation or currentRun.CurrentRoom.LeaveWipeAnimation or
+            GetDirectionalWipeAnimation({ TowardsId = heroExitPointId, Enter = false }))
     end
-    AdjustColorGrading({ Name = "Dusk", Duration = 0.15 })
 
-    ScreenAnchors.Transition = CreateScreenObstacle({
-        Name = "BlankObstacle",
-        X = ScreenCenterX,
-        Y = ScreenCenterY,
-        Group =
-        "Overlay"
-    })
-    SetAnimation({ DestinationId = ScreenAnchors.Transition, Name = "RoomTransitionIn" })
-    local uniformAspectScale = ScreenScaleX
-    if ScreenScaleY > ScreenScaleX then
-        uniformAspectScale = ScreenScaleY
-    end
-    if not ScreenState.NativeAspetRatio then
-        uniformAspectScale = uniformAspectScale + 0.1 -- Scaling isn't pixel-perfect, add some buffer
-    end
-    SetScale({ Id = ScreenAnchors.Transition, Fraction = uniformAspectScale })
-    wait(0.15)
+    WaitForSpeechFinished()
 
-    ToggleCombatControl({ "AdvancedTooltip" }, true, "LeaveRoom")
     RemoveInputBlock({ Name = "LeaveRoomPresentation" })
+    ToggleCombatControl({ "AdvancedTooltip" }, true, "LeaveRoom")
 end)
