@@ -3,6 +3,7 @@
 -- Regular room exit
 ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
     print("LeaveRoomPresentation")
+
     local exitDoorId = exitDoor.ObjectId
     local door = MapState.OfferedExitDoors[exitDoorId]
     local nextRoomData = nil
@@ -21,7 +22,7 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
         if door.ExitDoorOpenAnimation ~= nil then
             SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
             thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
-            wait(0.7)
+            -- wait(0.7)
         end
     end
     local heroExitIds = GetIdsByType({ Name = "HeroExit" })
@@ -64,14 +65,14 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
         CallFunctionName(exitDoor.Room.ExitTowardsFunctionName, exitDoor, exitDoor.Room.ExitTowardsFunctionArgs)
     end
 
-    wait(0.4)
+    -- wait(0.4)
 
     if door ~= nil and door.ExitDoorCloseAnimation ~= nil then
         SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorCloseAnimation })
         thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.2 }, })
     end
 
-    wait(0.02)
+    -- wait(0.02)
 
     if HasEventFunctionName(roomData.LeavePostPresentationEvents, "BiomeMapPresentation") then
         FullScreenFadeOutAnimation()

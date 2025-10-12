@@ -31,9 +31,11 @@ That's it, you are now ready to [**develop**](#develop).
 
 ## Develop
 
+
 <!-- TODO mess with thunderstore cli.  Look at how the publish works and do it locally -->
 <!-- TODO mess with loading a mod manually in r2modman -->
 * Create symlink with _CreateSymlink.ps1
+* Install Thunderstore cli https://github.com/thunderstore-io/thunderstore-cli `dotnet tool install -g tcli`
 * src folder must have a manifest.json with correct dependencies defined.
 * Watch logs with `_TailLogs.ps1`
 
