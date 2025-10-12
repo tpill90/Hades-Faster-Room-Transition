@@ -3,26 +3,21 @@
 # Hades Faster Room Transitions
 <!-- TODO write description -->
 
-## Setup
+## Mod Installation
+<!-- TODO -->
 
-- Edit the following files:
+## Need Help?
+<!-- TODO -->
 
-- From Thunderstore:
-  - Go to [**Teams settings**](https://thunderstore.io/settings/teams/) and select your team.
-  - Create a new **Service Account** for your mod (we recommend using the same name as the mod name).
-  - You will get an **API token** associated to the new **Service Account**.
-- From your GitHub repository:
-  - Go to **Settings** > **Secrets and variables** > **Actions**.
-  - Create a **new repository secret** named `TCLI_AUTH_TOKEN` and copy/paste the **API token** as its value.
-
-That's it, you are now ready to [**develop**](#develop).
+## Development Setup
+<!-- TODO -->
 
 ## Develop
 
 
-<!-- TODO mess with thunderstore cli.  Look at how the publish works and do it locally -->
 <!-- TODO mess with loading a mod manually in r2modman -->
-* Install Thunderstore cli https://github.com/thunderstore-io/thunderstore-cli `dotnet tool install -g tcli`
+
+* Install Thunderstore cli https://github.com/thunderstore-io/thunderstore-cli from the releases tab https://github.com/thunderstore-io/thunderstore-cli/releases
 * `tcli build` in the project root will create a zip file under `/build`
 
 * Create symlink with _CreateSymlink.ps1
@@ -38,7 +33,7 @@ That's it, you are now ready to [**develop**](#develop).
 Cycle through debug views with Ctrl+D, can use `DebugPrint()` in the game scripts to see whats going on.
 
 
-## Release
+## Publishing A Release
 
 - From your GitHub repository, go to **Actions** and select the **Release** workflow on the left.
 - Select the **Run workflow** dropdown on the right.
@@ -64,3 +59,5 @@ Cycle through debug views with Ctrl+D, can use `DebugPrint()` in the game script
   - Uploading the package to the workflow run as an artifact.
 - No changes are made to the repository, and no releasing / publishing happens.
 - This can be used to check if the Thunderstore package builds correctly and inspect its contents without publishing (e.g. if you are making changes to `thunderstore.toml`), by downloading the workflow run artifact.
+
+
