@@ -1,4 +1,5 @@
-# Hades II mod template
+# Hades Faster Room Transitions
+<!-- TODO add plateup icon to my profile readme.  Add hades link + icon to profile -->
 
 This mod template can be used as basis for creating your own Hades II mods and publishing them on [Thunderstore](https://thunderstore.io/).
 
@@ -34,8 +35,10 @@ That's it, you are now ready to [**develop**](#develop).
 
 <!-- TODO mess with thunderstore cli.  Look at how the publish works and do it locally -->
 <!-- TODO mess with loading a mod manually in r2modman -->
-* Create symlink with _CreateSymlink.ps1
 * Install Thunderstore cli https://github.com/thunderstore-io/thunderstore-cli `dotnet tool install -g tcli`
+* `tcli build` in the project root will create a zip file under `/build`
+
+* Create symlink with _CreateSymlink.ps1
 * src folder must have a manifest.json with correct dependencies defined.
 * Watch logs with `_TailLogs.ps1`
 
