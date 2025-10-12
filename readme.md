@@ -7,15 +7,6 @@
 
 - Edit the following files:
 
-  - `icon.png`: your Thunderstore mod icon.
-  - `thunderstore.toml`: your Thunderstore mod package definition (it will be used to generate your package's `manifest.json`). Edit the following entries as needed:
-    - `namespace`: your Thunderstore team / namespace, a.k.a. author name.
-    - `name`: your mod name. No spaces (allowed characters: `a-z A-Z 0-9 _`). Underscores get replaced with a space for display purposes on the website and mod manager. **Important:** this can not be changed later, aside from creating a new package.
-    - `description`: short description of your mod (max 250 characters). It will be used by the Thunderstore search, so make sure to include words that people are likely to search for when looking for your mod.
-    - `websiteUrl`: your GitHub repository (or website, or Discord server, if you prefer).
-    - `[package.dependencies]`: your mod dependencies. Use the `AuthorName-ModName = "X.Y.Z"` format, with `X.Y.Z` being the version you depend on.
-    - `[publish.categories]`: the categories you want your mod to appear under. [See the API](https://thunderstore.io/api/experimental/community/hades-ii/category/) for list of available categories.
-- Push everything to your GitHub repository.
 - From Thunderstore:
   - Go to [**Teams settings**](https://thunderstore.io/settings/teams/) and select your team.
   - Create a new **Service Account** for your mod (we recommend using the same name as the mod name).
