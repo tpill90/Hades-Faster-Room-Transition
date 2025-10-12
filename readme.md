@@ -1,16 +1,12 @@
-# Hades Faster Room Transitions
 <!-- TODO add plateup icon to my profile readme.  Add hades link + icon to profile -->
-
-This mod template can be used as basis for creating your own Hades II mods and publishing them on [Thunderstore](https://thunderstore.io/).
+<!-- TODO post that I have a fixed version of this on thunderstore https://www.nexusmods.com/hades2/mods/58 -->
+# Hades Faster Room Transitions
+<!-- TODO write description -->
 
 ## Setup
 
-- Create a new GitHub repository to host your mod.
-- Download [**hades2-mod-template.zip**](https://github.com/SGG-Modding/Hades2ModTemplate/releases/latest/download/hades2-mod-template.zip) and extract it.
 - Edit the following files:
-  - `README.md`: everything about your mod (name, features, config options, etc.). It will be displayed on your Thunderstore mod page, so make sure it's easy to follow and properly structured.
-  - `LICENSE`: replace `[year]` and `[fullname]`.
-    - The [MIT license](https://choosealicense.com/licenses/mit/) is shipped by default, and is the one we recommend to use in the Hades modding community. If you want to use another license, make sure to change it now.
+
   - `icon.png`: your Thunderstore mod icon.
   - `thunderstore.toml`: your Thunderstore mod package definition (it will be used to generate your package's `manifest.json`). Edit the following entries as needed:
     - `namespace`: your Thunderstore team / namespace, a.k.a. author name.

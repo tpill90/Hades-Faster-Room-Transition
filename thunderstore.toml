@@ -3,11 +3,11 @@ schemaVersion = "0.0.1"
 
 
 [package]
-namespace = "AuthorName"
-name = "ModName"
+namespace = "tpill90"
+name = "FasterRoomTransitions"
 versionNumber = "0.0.0"
-description = "Allows to do some super duper thing."
-websiteUrl = "https://github.com/AuthorName/ModName"
+description = "Speeds up room transitions!  Spend less time waiting between rooms!"
+websiteUrl = "https://github.com/tpill90/Hades-Faster-Room-Transition"
 containsNsfwContent = false
 
 [package.dependencies]
@@ -39,7 +39,7 @@ target = "./plugins"
 
 [publish]
 repository = "https://thunderstore.io"
-communities = [ "hades-ii", ]
+communities = ["hades-ii"]
 
 [publish.categories]
-hades-ii = [ "mods", ]
+hades-ii = ["mods"]
