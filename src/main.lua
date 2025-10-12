@@ -43,10 +43,11 @@ local function on_ready()
     if config.enabled == false then return end
 
     import 'ready.lua'
-    import "OverrideScripts/EphyraRoomEntrance.lua"
     import "OverrideScripts/ExitBiomeGRoomPresentation.lua"
+    import "OverrideScripts/HubCombatRoomEntrance.lua"
     import "OverrideScripts/LeaveRoomPresentation.lua"
     import "OverrideScripts/OlympusSkyExitPresentation.lua"
+    import "OverrideScripts/RoomEntranceStandard.lua"
     import "OverrideScripts/ShipsLeaveRoomPresentation.lua"
     import "OverrideScripts/ShipsRoomEntrancePresentation.lua"
 end
@@ -58,11 +59,11 @@ local function on_reload()
 
     mod = modutil.mod.Mod.Register(_PLUGIN.guid)
     import 'reload.lua'
-
-    import "OverrideScripts/EphyraRoomEntrance.lua"
     import "OverrideScripts/ExitBiomeGRoomPresentation.lua"
+    import "OverrideScripts/HubCombatRoomEntrance.lua"
     import "OverrideScripts/LeaveRoomPresentation.lua"
     import "OverrideScripts/OlympusSkyExitPresentation.lua"
+    import "OverrideScripts/RoomEntranceStandard.lua"
     import "OverrideScripts/ShipsLeaveRoomPresentation.lua"
     import "OverrideScripts/ShipsRoomEntrancePresentation.lua"
 end

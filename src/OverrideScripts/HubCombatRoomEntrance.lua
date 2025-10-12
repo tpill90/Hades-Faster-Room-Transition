@@ -1,9 +1,8 @@
 ---@diagnostic disable: undefined-global
 
--- Ephyra - Animation when entering a room
+-- Ephyra -- Appears to be when you enter a room from the main central hub
 ModUtil.Path.Override("HubCombatRoomEntrance", function(currentRun, exitDoor)
-    print("Ephyra Room Entrance")
-
+    print("HubCombatRoomEntrance")
     local exitDoorId = exitDoor.ObjectId
     local door = MapState.OfferedExitDoors[exitDoorId]
 
@@ -15,7 +14,6 @@ ModUtil.Path.Override("HubCombatRoomEntrance", function(currentRun, exitDoor)
     if door ~= nil then
         DestroyDoorRewardPresenation(door)
         if door.ExitDoorOpenAnimation ~= nil then
-            print("door.ExitDoorOpenAnimation")
             SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
             thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
             wait(0.02)
