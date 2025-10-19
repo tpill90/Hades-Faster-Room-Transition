@@ -3,6 +3,7 @@
 -- Oceanus - Jumping down the holes
 ModUtil.Path.Override("ExitBiomeGRoomPresentation", function(currentRun, exitDoor)
     print("ExitBiomeGRoomPresentation")
+
     AddInputBlock({ Name = "LeaveRoomPresentation" })
     ToggleCombatControl({ "AdvancedTooltip" }, false, "LeaveRoom")
     HideCombatUI("ExitBiomeGRoomPresentation")
@@ -27,7 +28,7 @@ ModUtil.Path.Override("ExitBiomeGRoomPresentation", function(currentRun, exitDoo
     PlaySound({ Name = "/SFX/Menu Sounds/GeneralWhooshMENULoudLow" })
     local unequipAnimation = GetEquippedWeaponValue("UnequipAnimation") or "MelinoeIdleWeaponless"
     SetAnimation({ Name = unequipAnimation, DestinationId = CurrentRun.Hero.ObjectId })
-    PanCamera({ Id = exitDoor.ObjectId, Duration = 1.1, OffsetY = -50, EaseOut = 0 })
+    -- PanCamera({ Id = exitDoor.ObjectId, Duration = 1.1, OffsetY = -50, EaseOut = 0 })
 
     -- wait( 0.5 )
 
@@ -46,11 +47,11 @@ ModUtil.Path.Override("ExitBiomeGRoomPresentation", function(currentRun, exitDoo
 
     -- wait( 0.20 )
 
-    thread(SlightDescent)
-    PanCamera({ Id = exitDoor.ObjectId, Duration = 1.2, OffsetY = 85, Retarget = true })
-    thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.25 }, })
+    -- thread(SlightDescent)
+    -- PanCamera({ Id = exitDoor.ObjectId, Duration = 1.2, OffsetY = 85, Retarget = true })
+    -- thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.25 }, })
 
-    FullScreenFadeOutAnimation("RoomTransitionIn_Down")
+    -- FullScreenFadeOutAnimation("RoomTransitionIn_Down")
 
     WaitForSpeechFinished()
 
