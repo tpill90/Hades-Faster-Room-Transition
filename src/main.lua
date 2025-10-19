@@ -77,9 +77,6 @@ function loadOverrideScripts()
 end
 
 function revertOverrides()
-    -- Undoing the changes
-    print("Reverting changes")
-
     ExitBiomeGRoomPresentation = ModUtil.Original("ExitBiomeGRoomPresentation")
     FastExitPresentation = ModUtil.Original("FastExitPresentation")
     HubCombatRoomEntrance = ModUtil.Original("HubCombatRoomEntrance")

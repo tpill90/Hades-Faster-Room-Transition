@@ -1,8 +1,8 @@
 ---@diagnostic disable: undefined-global
 
--- TODO
+-- TODO is this needed?
 ModUtil.Path.Override("RoomEntranceStandard", function(currentRun, currentRoom)
-    print("RoomEntranceStandard")
+    -- print("RoomEntranceStandard")
     local roomData = RoomData[currentRoom.Name] or currentRoom
     local roomIntroSequenceDuration = roomData.IntroSequenceDuration or RoomData.BaseRoom.IntroSequenceDuration or 0.0
 
