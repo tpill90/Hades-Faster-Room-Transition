@@ -15,11 +15,11 @@ ModUtil.Path.Override("ShipsLeaveRoomPresentation", function(currentRun, exitDoo
 
     if door ~= nil then
         thread(DestroyDoorRewardPresenation, door)
-        if door.ExitDoorOpenAnimation ~= nil then
-            SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
-            thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
-            -- wait(0.7)
-        end
+        -- if door.ExitDoorOpenAnimation ~= nil then
+        --     SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
+        --     thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
+        --     wait(0.7)
+        -- end
     end
     local heroExitIds = GetIdsByType({ Name = "HeroExit" })
     local heroExitPointId = GetClosest({ Id = exitDoorId, DestinationIds = heroExitIds, Distance = 800 })
@@ -48,9 +48,9 @@ ModUtil.Path.Override("ShipsLeaveRoomPresentation", function(currentRun, exitDoo
     -- wait(1.2)
 
     -- energy shot VFX and camera effects
-    PlaySound({ Name = "/SFX/ShipsDoorUse" })
-    ShakeScreen({ Speed = 500, Distance = 4, FalloffSpeed = 1000, Duration = 0.2 })
-    SetAlpha({ Id = currentRun.Hero.ObjectId, Fraction = 0, Duration = 0.1 })
+    -- PlaySound({ Name = "/SFX/ShipsDoorUse" })
+    -- ShakeScreen({ Speed = 500, Distance = 4, FalloffSpeed = 1000, Duration = 0.2 })
+    -- SetAlpha({ Id = currentRun.Hero.ObjectId, Fraction = 0, Duration = 0.1 })
 
     LeaveRoomAudio(currentRun, exitDoor)
     if exitDoor.Room.ExitTowardsFunctionName ~= nil then
@@ -59,14 +59,14 @@ ModUtil.Path.Override("ShipsLeaveRoomPresentation", function(currentRun, exitDoo
 
     -- wait(0.1)
 
-    if door ~= nil and door.ExitDoorCloseAnimation ~= nil then
-        SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorCloseAnimation })
-        thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.2 }, })
-    end
+    -- if door ~= nil and door.ExitDoorCloseAnimation ~= nil then
+    --     SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorCloseAnimation })
+    --     thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.2 }, })
+    -- end
 
     wait(0.02)
 
-    FullScreenFadeOutAnimation("RoomTransitionIn_TopRight")
+    -- FullScreenFadeOutAnimation("RoomTransitionIn_TopRight")
 
     WaitForSpeechFinished()
 

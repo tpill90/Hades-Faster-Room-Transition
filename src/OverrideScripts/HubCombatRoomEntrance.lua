@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-global
 
--- Ephyra -- Appears to be when you enter a room from the main central hub
+-- Ephyra -- Animations for when you enter the central hub
 ModUtil.Path.Override("HubCombatRoomEntrance", function(currentRun, exitDoor)
     print("HubCombatRoomEntrance")
     local exitDoorId = exitDoor.ObjectId
@@ -13,11 +13,11 @@ ModUtil.Path.Override("HubCombatRoomEntrance", function(currentRun, exitDoor)
 
     if door ~= nil then
         DestroyDoorRewardPresenation(door)
-        if door.ExitDoorOpenAnimation ~= nil then
-            SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
-            thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
-            wait(0.02)
-        end
+        -- if door.ExitDoorOpenAnimation ~= nil then
+        --     SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
+        --     thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
+        --     wait(0.02)
+        -- end
     end
 
     local heroExitPointId = nil
@@ -28,7 +28,7 @@ ModUtil.Path.Override("HubCombatRoomEntrance", function(currentRun, exitDoor)
         if heroExitPointId < 0 then
             heroExitPointId = exitDoorId
         end
-        PanCamera({ Id = heroExitPointId, Duration = 3.0 })
+        -- PanCamera({ Id = heroExitPointId, Duration = 3.0 })
         SetUnitProperty({ DestinationId = currentRun.Hero.ObjectId, Property = "CollideWithObstacles", Value = false })
         local args = {}
         args.SuccessDistance = 30
@@ -37,17 +37,17 @@ ModUtil.Path.Override("HubCombatRoomEntrance", function(currentRun, exitDoor)
             table.insert(exitPath, door.ObjectId)
         end
         table.insert(exitPath, heroExitPointId)
-        thread(MoveHeroAlongPath, exitPath, args)
+        -- thread(MoveHeroAlongPath, exitPath, args)
     end
 
     LeaveRoomAudio(currentRun, exitDoor)
 
-    -- wait(0.1)
+    -- Leaving .1 seconds so that it isn't so strangely abrupt when changing rooms
+    wait(0.1)
 
-    SetAlpha({ Id = currentRun.Hero.ObjectId, Fraction = 0, Duration = 0.35 })
+    -- SetAlpha({ Id = currentRun.Hero.ObjectId, Fraction = 0, Duration = 0.35 })
 
-    FullScreenFadeOutAnimation(roomData.EnterWipeAnimation or
-        GetDirectionalWipeAnimation({ TowardsId = heroExitPointId, Enter = false }))
+    -- FullScreenFadeOutAnimation(roomData.EnterWipeAnimation or GetDirectionalWipeAnimation({ TowardsId = heroExitPointId, Enter = false }))
 
     -- wait(0.31)
     WaitForSpeechFinished()

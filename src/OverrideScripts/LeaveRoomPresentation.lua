@@ -59,7 +59,8 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
         CallFunctionName(exitDoor.Room.ExitTowardsFunctionName, exitDoor, exitDoor.Room.ExitTowardsFunctionArgs)
     end
 
-    -- wait(0.4)
+    -- Leaving .1 seconds so that it isn't so strangely abrupt when changing rooms
+    wait(0.1)
 
     -- if door ~= nil and door.ExitDoorCloseAnimation ~= nil then
     --     SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorCloseAnimation })

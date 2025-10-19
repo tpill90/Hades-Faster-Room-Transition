@@ -64,7 +64,7 @@ local function on_reload()
 
     mod = modutil.mod.Mod.Register(_PLUGIN.guid)
 end
-
+-- TODO comment how this all works
 function loadOverrideScripts()
     import "OverrideScripts/ExitBiomeGRoomPresentation.lua"
     import "OverrideScripts/FastExitPresentation.lua"
