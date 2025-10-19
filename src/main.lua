@@ -38,12 +38,36 @@ public.config = config -- so other mods can access our config
 
 -- #endregion
 
+modEnabled = config.enabled;
+
+modEnabled = false;
+
 -- what to do when we are ready, but not re-do on reload.
 local function on_ready()
-    if config.enabled == false then return end
+    revertOverrides()
 
-    import 'ready.lua'
+    if modEnabled == false then
+        return
+    end
+    loadOverrideScripts()
+end
+
+-- what to do when we are ready, but also again on every reload.
+-- only do things that are safe to run over and over.
+local function on_reload()
+    revertOverrides()
+
+    if modEnabled == false then
+        return
+    end
+    loadOverrideScripts()
+
+    mod = modutil.mod.Mod.Register(_PLUGIN.guid)
+end
+
+function loadOverrideScripts()
     import "OverrideScripts/ExitBiomeGRoomPresentation.lua"
+    import "OverrideScripts/FastExitPresentation.lua"
     import "OverrideScripts/HubCombatRoomEntrance.lua"
     import "OverrideScripts/LeaveRoomPresentation.lua"
     import "OverrideScripts/OlympusSkyExitPresentation.lua"
@@ -52,20 +76,18 @@ local function on_ready()
     import "OverrideScripts/ShipsRoomEntrancePresentation.lua"
 end
 
--- what to do when we are ready, but also again on every reload.
--- only do things that are safe to run over and over.
-local function on_reload()
-    if config.enabled == false then return end
+function revertOverrides()
+    -- Undoing the changes
+    print("Reverting changes")
 
-    mod = modutil.mod.Mod.Register(_PLUGIN.guid)
-    import 'reload.lua'
-    import "OverrideScripts/ExitBiomeGRoomPresentation.lua"
-    import "OverrideScripts/HubCombatRoomEntrance.lua"
-    import "OverrideScripts/LeaveRoomPresentation.lua"
-    import "OverrideScripts/OlympusSkyExitPresentation.lua"
-    import "OverrideScripts/RoomEntranceStandard.lua"
-    import "OverrideScripts/ShipsLeaveRoomPresentation.lua"
-    import "OverrideScripts/ShipsRoomEntrancePresentation.lua"
+    ExitBiomeGRoomPresentation = ModUtil.Original("ExitBiomeGRoomPresentation")
+    FastExitPresentation = ModUtil.Original("FastExitPresentation")
+    HubCombatRoomEntrance = ModUtil.Original("HubCombatRoomEntrance")
+    LeaveRoomPresentation = ModUtil.Original("LeaveRoomPresentation")
+    OlympusSkyExitPresentation = ModUtil.Original("OlympusSkyExitPresentation")
+    RoomEntranceStandard = ModUtil.Original("RoomEntranceStandard")
+    ShipsLeaveRoomPresentation = ModUtil.Original("ShipsLeaveRoomPresentation")
+    ShipsRoomEntrancePresentation = ModUtil.Original("ShipsRoomEntrancePresentation")
 end
 
 -- this allows us to limit certain functions to not be reloaded.

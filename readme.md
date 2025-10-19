@@ -31,7 +31,7 @@
 * Add to your run parameters in Steam.  Will let you see debug output from the game files  `/DebugDraw=true /DebugKeysEnabled=true /EnabledDebugDisplays=Default,Console,MissingTextures,TextSystem`
 
 Cycle through debug views with Ctrl+D, can use `DebugPrint()` in the game scripts to see whats going on.
-
+`F1` to open up modding UI
 
 ## Publishing A Release
 
