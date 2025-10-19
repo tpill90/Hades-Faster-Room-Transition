@@ -28,8 +28,6 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
     local heroExitIds = GetIdsByType({ Name = "HeroExit" })
     local heroExitPointId = GetClosest({ Id = exitDoorId, DestinationIds = heroExitIds, Distance = 800 })
     if heroExitPointId > 0 then
-        print("hero exit > 0")
-
         -- if not currentRun.CurrentRoom.BlockExitPan then
         --     PanCamera({ Id = heroExitPointId, Duration = 10.0 })
         -- end
@@ -70,12 +68,12 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
 
     -- wait(0.02)
 
-    if HasEventFunctionName(roomData.LeavePostPresentationEvents, "BiomeMapPresentation") then
-        FullScreenFadeOutAnimation()
-    else
-        FullScreenFadeOutAnimation(nextRoomData.LeavePrevRoomWipeAnimation or currentRun.CurrentRoom.LeaveWipeAnimation or
-            GetDirectionalWipeAnimation({ TowardsId = heroExitPointId, Enter = false }))
-    end
+    -- if HasEventFunctionName(roomData.LeavePostPresentationEvents, "BiomeMapPresentation") then
+    --     FullScreenFadeOutAnimation()
+    -- else
+    --     FullScreenFadeOutAnimation(nextRoomData.LeavePrevRoomWipeAnimation or currentRun.CurrentRoom.LeaveWipeAnimation or
+    --         GetDirectionalWipeAnimation({ TowardsId = heroExitPointId, Enter = false }))
+    -- end
 
     WaitForSpeechFinished()
 
