@@ -13,6 +13,8 @@ ModUtil.Path.Override("FastExitPresentation", function(currentRun, exitDoor)
 
     local heroExitIds = GetIdsByType({ Name = "HeroExit" })
     local heroExitPointId = GetClosest({ Id = exitDoorId, DestinationIds = heroExitIds, Distance = 800 })
+
+    print(heroExitPointId)
     if heroExitPointId > 0 then
         SetUnitProperty({ DestinationId = currentRun.Hero.ObjectId, Property = "CollideWithObstacles", Value = false })
         local args = {}
@@ -32,10 +34,15 @@ ModUtil.Path.Override("FastExitPresentation", function(currentRun, exitDoor)
             AngleTowardTarget({ Id = currentRun.Hero.ObjectId, DestinationId = exitDoorId })
         end
         SetAlpha({ Id = currentRun.Hero.ObjectId, Fraction = 0, Duration = 1.0 })
-        SetAnimation({ DestinationId = CurrentRun.Hero.ObjectId, Name = currentRun.CurrentRoom.ExitAnimation or
-        RoomData.BaseRoom.ExitAnimation })
-        CreateAnimation({ DestinationId = CurrentRun.Hero.ObjectId, Name = currentRun.CurrentRoom.ExitVfx or
-        RoomData.BaseRoom.ExitVfx })
+        SetAnimation({
+            DestinationId = CurrentRun.Hero.ObjectId,
+            Name = currentRun.CurrentRoom.ExitAnimation or
+                RoomData.BaseRoom.ExitAnimation
+        })
+        CreateAnimation({
+            DestinationId = CurrentRun.Hero.ObjectId,
+            Name = currentRun.CurrentRoom.ExitVfx or RoomData.BaseRoom.ExitVfx
+        })
         if door ~= nil and door.ExitPortalSound then
             PlaySound({ Name = door.ExitPortalSound or "/SFX/Menu Sounds/ChaosRoomEnterExit" })
         end
@@ -43,12 +50,12 @@ ModUtil.Path.Override("FastExitPresentation", function(currentRun, exitDoor)
 
     LeaveRoomAudio(currentRun, exitDoor)
 
-    wait(0.1)
+    -- wait(0.1)
 
     FullScreenFadeOutAnimation(roomData.EnterWipeAnimation or
-    GetDirectionalWipeAnimation({ TowardsId = heroExitPointId, Enter = false }))
+        GetDirectionalWipeAnimation({ TowardsId = heroExitPointId, Enter = false }))
 
-    wait(0.26)
+    -- wait(0.26)
 
     WaitForSpeechFinished()
 

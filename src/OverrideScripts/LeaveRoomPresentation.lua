@@ -21,7 +21,7 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
         thread(DestroyDoorRewardPresenation, door)
         if door.ExitDoorOpenAnimation ~= nil then
             SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
-            thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
+            -- thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
             -- wait(0.7)
         end
     end

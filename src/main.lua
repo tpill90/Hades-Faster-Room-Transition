@@ -40,7 +40,7 @@ public.config = config -- so other mods can access our config
 
 modEnabled = config.enabled;
 
-modEnabled = false;
+modEnabled = true;
 
 -- what to do when we are ready, but not re-do on reload.
 local function on_ready()
