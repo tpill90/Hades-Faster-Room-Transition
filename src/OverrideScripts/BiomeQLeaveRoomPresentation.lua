@@ -15,13 +15,12 @@ ModUtil.Path.Override("BiomeQLeaveRoomPresentation", function(currentRun, exitDo
     if door ~= nil then
         thread(DestroyDoorRewardPresenation, door)
         if door.ExitDoorOpenAnimation ~= nil then
-            print("ExitDoorOpenAnimation")
-            SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
-            ClearCameraClamp({ LerpTime = 0.0 })
-            ZeroMouseTether("BiomeQLeaveRoomPresentation")
-            thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
-            PanCamera({ Id = currentRun.Hero.ObjectId, Duration = 0.65, FromCurrentLocation = true, Retarget = true })
-            wait(0.7)
+            -- SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorOpenAnimation })
+            -- ClearCameraClamp({ LerpTime = 0.0 })
+            -- ZeroMouseTether("BiomeQLeaveRoomPresentation")
+            -- thread(DoRumble, { { ScreenPreWait = 0.02, Fraction = 0.15, Duration = 0.4 }, })
+            -- PanCamera({ Id = currentRun.Hero.ObjectId, Duration = 0.65, FromCurrentLocation = true, Retarget = true })
+            -- wait(0.7)
         else
             print("else")
             -- consolidate and delete when we have an exit animation above
@@ -65,7 +64,7 @@ ModUtil.Path.Override("BiomeQLeaveRoomPresentation", function(currentRun, exitDo
         CallFunctionName(exitDoor.Room.ExitTowardsFunctionName, exitDoor, exitDoor.Room.ExitTowardsFunctionArgs)
     end
 
-    wait(0.1)
+    -- wait(0.1)
 
     -- if door ~= nil and door.ExitDoorCloseAnimation ~= nil then
     --     SetAnimation({ DestinationId = exitDoorId, Name = door.ExitDoorCloseAnimation })
