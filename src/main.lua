@@ -66,6 +66,7 @@ local function on_reload()
 end
 -- TODO comment how this all works
 function loadOverrideScripts()
+    import "OverrideScripts/BiomeQLeaveRoomPresentation.lua"
     import "OverrideScripts/ExitBiomeGRoomPresentation.lua"
     import "OverrideScripts/FastExitPresentation.lua"
     import "OverrideScripts/HubCombatRoomEntrance.lua"
@@ -77,6 +78,7 @@ function loadOverrideScripts()
 end
 
 function revertOverrides()
+    BiomeQLeaveRoomPresentation = ModUtil.Original("BiomeQLeaveRoomPresentation")
     ExitBiomeGRoomPresentation = ModUtil.Original("ExitBiomeGRoomPresentation")
     FastExitPresentation = ModUtil.Original("FastExitPresentation")
     HubCombatRoomEntrance = ModUtil.Original("HubCombatRoomEntrance")
