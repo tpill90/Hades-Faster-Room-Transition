@@ -1,7 +1,7 @@
 {
     "namespace": "tpill90",
     "name": "TestMod",
-    "description": "",
+    "description": "This is a dummy manifest put in here so that the symlink will work.  Not needed when publishing.",
     "version_number": "0.0.0",
     "dependencies": [
         "SGG_Modding-ENVY-1.01.0",
