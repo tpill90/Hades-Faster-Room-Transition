@@ -1,21 +1,21 @@
 <!-- TODO add plateup icon to my profile readme.  Add hades link + icon to profile -->
 <!-- TODO post that I have a fixed version of this on thunderstore https://www.nexusmods.com/hades2/mods/58 -->
-# Hades Faster Room Transitions
-<!-- TODO write description -->
+# Hades Faster Room Transition
 
-## Mod Installation
+Dramatically speeds up room transitions.  No longer do you need to wait for the long animations to play out each time,  you can start the next room almost immediately!
+
+# Mod Installation
 <!-- TODO -->
 
-## Need Help?
+# Need Help?
+If you are running into any issues, feel free to open up a Github issue on this repository.
+
+You can also find me in the [**Hades Modding** Discord](https://discord.com/invite/KuMbyrN).
+
+# Development
 <!-- TODO -->
 
-## Development Setup
-<!-- TODO -->
-
-## Develop
-
-
-<!-- TODO mess with loading a mod manually in r2modman -->
+## Setup
 
 * Install Thunderstore cli https://github.com/thunderstore-io/thunderstore-cli from the releases tab https://github.com/thunderstore-io/thunderstore-cli/releases
 * `tcli build` in the project root will create a zip file under `/build`
@@ -28,9 +28,6 @@
 * Go on the Workspace tab, and in the search bar at the top type library (add a space before). Scroll down until you find Lua > Workspace Library. There you need to add two items : Content/Scripts/ and Mods/.
 * Then search for preload and change Lua > Workspace: Preload File Size from 500 to 3000
 
-* Add to your run parameters in Steam.  Will let you see debug output from the game files  `/DebugDraw=true /DebugKeysEnabled=true /EnabledDebugDisplays=Default,Console,MissingTextures,TextSystem`
-
-Cycle through debug views with Ctrl+D, can use `DebugPrint()` in the game scripts to see whats going on.
 `F1` to open up modding UI
 
 ## Publishing A Release
