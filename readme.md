@@ -22,13 +22,19 @@ You can also find me in the [**Hades Modding** Discord](https://discord.com/invi
 
 * Create symlink with _CreateSymlink.ps1
 * src folder must have a manifest.json with correct dependencies defined.
-* Watch logs with `_TailLogs.ps1`
+
 
 * VSCode install lua extension by sumneko
 * Go on the Workspace tab, and in the search bar at the top type library (add a space before). Scroll down until you find Lua > Workspace Library. There you need to add two items : Content/Scripts/ and Mods/.
 * Then search for preload and change Lua > Workspace: Preload File Size from 500 to 3000
 
 `F1` to open up modding UI
+
+## Workflow
+
+* Changes will be automatically picked up whenever any file is changed.
+* You may need to sometimes restart the game in some scenarios.
+* Watch logs with `_TailLogs.ps1`
 
 ## Publishing A Release
 
