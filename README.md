@@ -20,9 +20,9 @@ You can also find me in the [**Hades Modding** Discord](https://discord.com/invi
 * Install Thunderstore cli https://github.com/thunderstore-io/thunderstore-cli from the releases tab https://github.com/thunderstore-io/thunderstore-cli/releases
 * `tcli build` in the project root will create a zip file under `/build`
 
-* Create symlink with _CreateSymlink.ps1
+* Create symlink with _SetupDevEnvironment.ps1
 * src folder must have a manifest.json with correct dependencies defined.
-
+<!-- TODO need to create + copy the manifest.json over wwithout committing it -->
 
 * VSCode install lua extension by sumneko
 * Go on the Workspace tab, and in the search bar at the top type library (add a space before). Scroll down until you find Lua > Workspace Library. There you need to add two items : Content/Scripts/ and Mods/.
