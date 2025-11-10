@@ -1,5 +1,7 @@
+---@diagnostic disable: undefined-global
+-- #region grabbing our dependencies
+
 ---@meta _
--- #region grabbing our dependencies,
 
 ---@diagnostic disable-next-line: undefined-global
 local mods = rom.mods
@@ -31,68 +33,83 @@ chalk = mods["SGG_Modding-Chalk"]
 ---@module 'SGG_Modding-ReLoad'
 reload = mods['SGG_Modding-ReLoad']
 
+-- Loads config file
 ---@module 'config'
 config = chalk.auto 'config.lua'
--- ^ this updates our `.cfg` file in the config folder!
-public.config = config -- so other mods can access our config
+public.config = config
+
+local loader = reload.auto_single()
 
 -- #endregion
 
-modEnabled = config.enabled;
-
-modEnabled = true;
-
--- what to do when we are ready, but not re-do on reload.
-local function on_ready()
-    revertOverrides()
-
-    if modEnabled == false then
-        return
-    end
-    loadOverrideScripts()
-end
-
--- what to do when we are ready, but also again on every reload.
--- only do things that are safe to run over and over.
+-- What to do when mod is ready, but also again on every reload. Only do things that are safe to run over and over.
 local function on_reload()
     revertOverrides()
-
-    if modEnabled == false then
-        return
-    end
     loadOverrideScripts()
+
+    if config.debugEnabled then
+        import "debug.lua"
+    end
 
     mod = modutil.mod.Mod.Register(_PLUGIN.guid)
 end
+
 -- TODO comment how this all works
 function loadOverrideScripts()
-    import "OverrideScripts/BiomeQLeaveRoomPresentation.lua"
     import "OverrideScripts/ExitBiomeGRoomPresentation.lua"
     import "OverrideScripts/FastExitPresentation.lua"
     import "OverrideScripts/HubCombatRoomEntrance.lua"
     import "OverrideScripts/LeaveRoomPresentation.lua"
     import "OverrideScripts/OlympusSkyExitPresentation.lua"
-    import "OverrideScripts/RoomEntranceStandard.lua"
-    import "OverrideScripts/ShipsLeaveRoomPresentation.lua"
-    import "OverrideScripts/ShipsRoomEntrancePresentation.lua"
+    import "OverrideScripts/Summit-BiomeQLeaveRoomPresentation.lua"
+    import "OverrideScripts/Summit-FortressMainDoorOpenPresentation.lua"
+
+    import "OverrideScripts/MourningFields.lua"
+    import "OverrideScripts/Tartarus.lua"
+    import "OverrideScripts/Thessaly.lua"
 end
 
 function revertOverrides()
     BiomeQLeaveRoomPresentation = ModUtil.Original("BiomeQLeaveRoomPresentation")
     ExitBiomeGRoomPresentation = ModUtil.Original("ExitBiomeGRoomPresentation")
     FastExitPresentation = ModUtil.Original("FastExitPresentation")
+    FastExitPresentation = ModUtil.Original("FortressMainDoorOpenPresentation")
     HubCombatRoomEntrance = ModUtil.Original("HubCombatRoomEntrance")
     LeaveRoomPresentation = ModUtil.Original("LeaveRoomPresentation")
+
     OlympusSkyExitPresentation = ModUtil.Original("OlympusSkyExitPresentation")
-    RoomEntranceStandard = ModUtil.Original("RoomEntranceStandard")
+
+    -- Mourning Fields
+    LeaveRoomHBossPresentation = ModUtil.Original("LeaveRoomHBossPresentation")
+    LeaveRoomHPostBossPresentation = ModUtil.Original("LeaveRoomHPostBossPresentation")
+
+    -- Tartarus
+    LeaveRoomIPreBoss01Presentation = ModUtil.Original("LeaveRoomIPreBoss01Presentation")
+    TartarusChamberMoverPresentation = ModUtil.Original("TartarusChamberMoverPresentation")
+
+    -- Thessaly
     ShipsLeaveRoomPresentation = ModUtil.Original("ShipsLeaveRoomPresentation")
     ShipsRoomEntrancePresentation = ModUtil.Original("ShipsRoomEntrancePresentation")
 end
 
--- this allows us to limit certain functions to not be reloaded.
-local loader = reload.auto_single()
-
--- this runs only when modutil and the game's lua is ready
+-- This runs only when modutil and the game's lua is ready
 modutil.once_loaded.game(function()
-    loader.load(on_ready, on_reload)
+    loader.load(function() end, on_reload)
+end)
+
+-- Some stuff that will make debugging easier.  Enables debug keybinds, invincibility, and max damage
+modutil.once_loaded.save(function()
+    -- Only enabling debugging cheats if the debug flag is enabled.
+    if config.debugEnabled == false then
+        return
+    end
+    rom.log.warning("Enabling invincibility + max damage")
+
+    SessionState.SafeMode = true
+    SessionState.BlockHeroDeath = true
+    SessionState.BlockHeroDamage = true
+    SessionState.UnlimitedMana = true
+
+    SetConfigOption({ Name = "DamageMultiplier", Value = 100.0 })
+    UpdateConfigOptionCache()
 end)

@@ -1,13 +1,17 @@
 {
-  "folders": [
-    {
-      "path": "."
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "Lua.workspace.library": [
+            "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Hades II\\Content\\Scripts",
+            "C:\\Users\\Tim\\AppData\\Roaming\\r2modmanPlus-local\\HadesII\\profiles\\Default\\ReturnOfModding\\plugins\\SGG_Modding-ReLoad"
+        ],
+        "cSpell.words": [
+            "Chronos",
+            "modutil"
+        ]
     }
-  ],
-  "settings": {
-    "Lua.workspace.library": [
-      "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Hades II\\Content\\Scripts",
-      "C:\\Users\\Tim\\AppData\\Roaming\\r2modmanPlus-local\\HadesII\\profiles\\Default\\ReturnOfModding\\plugins\\SGG_Modding-ReLoad"
-    ]
-  }
 }

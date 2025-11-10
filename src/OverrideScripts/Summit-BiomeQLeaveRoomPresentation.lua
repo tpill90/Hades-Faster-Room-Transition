@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-global
 
--- TODO
+-- This is triggered anytime that you leave a regular room on the summit, includes typhon's entrance.
 ModUtil.Path.Override("BiomeQLeaveRoomPresentation", function(currentRun, exitDoor)
     print("BiomeQLeaveRoomPresentation")
 
@@ -77,7 +77,7 @@ ModUtil.Path.Override("BiomeQLeaveRoomPresentation", function(currentRun, exitDo
 
     PlaySound({ Name = "/Leftovers/SFX/FootstepsSequence" })
 
-    WaitForSpeechFinished()
+    -- WaitForSpeechFinished()
 
     RemoveInputBlock({ Name = "BiomeQLeaveRoomPresentation" })
     ToggleCombatControl({ "AdvancedTooltip" }, true, "LeaveRoom")

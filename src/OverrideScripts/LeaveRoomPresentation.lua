@@ -81,3 +81,9 @@ ModUtil.Path.Override("LeaveRoomPresentation", function(currentRun, exitDoor)
     RemoveInputBlock({ Name = "LeaveRoomPresentation" })
     ToggleCombatControl({ "AdvancedTooltip" }, true, "LeaveRoom")
 end)
+
+-- ModUtil.Path.Context.Wrap("LeaveRoomPresentation", function()
+--     ModUtil.Path.Wrap("wait", function(...)
+--         return
+--     end)
+-- end)
