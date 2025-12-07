@@ -6,11 +6,12 @@
     ],
     "settings": {
         "Lua.workspace.library": [
-            "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Hades II\\Content\\Scripts",
-            "C:\\Users\\Tim\\AppData\\Roaming\\r2modmanPlus-local\\HadesII\\profiles\\Default\\ReturnOfModding\\plugins\\SGG_Modding-ReLoad"
+            "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Hades II\\Content\\Scripts"
         ],
         "cSpell.words": [
             "Chronos",
+            "Ephyra",
+            "Melinoe",
             "modutil"
         ]
     }

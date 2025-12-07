@@ -14,7 +14,7 @@ If you are running into any issues, feel free to open up a Github issue on this 
 You can also find me in the [**Hades Modding** Discord](https://discord.com/invite/KuMbyrN).
 
 # Development
-<!-- TODO -->
+<!-- TODO Document how debug.lua works.  Finish writing this section up -->
 
 ## Setup
 

@@ -45,7 +45,7 @@ local loader = reload.auto_single()
 -- What to do when mod is ready, but also again on every reload. Only do things that are safe to run over and over.
 local function on_reload()
     revertOverrides()
-    loadOverrideScripts()
+    import "Overrides.lua"
 
     if config.debugEnabled then
         import "debug.lua"
@@ -54,26 +54,11 @@ local function on_reload()
     mod = modutil.mod.Mod.Register(_PLUGIN.guid)
 end
 
--- TODO comment how this all works
-function loadOverrideScripts()
-    import "OverrideScripts/ExitBiomeGRoomPresentation.lua"
-    import "OverrideScripts/FastExitPresentation.lua"
-    import "OverrideScripts/HubCombatRoomEntrance.lua"
-    import "OverrideScripts/LeaveRoomPresentation.lua"
-    import "OverrideScripts/OlympusSkyExitPresentation.lua"
-    import "OverrideScripts/Summit-BiomeQLeaveRoomPresentation.lua"
-    import "OverrideScripts/Summit-FortressMainDoorOpenPresentation.lua"
-
-    import "OverrideScripts/MourningFields.lua"
-    import "OverrideScripts/Tartarus.lua"
-    import "OverrideScripts/Thessaly.lua"
-end
-
 function revertOverrides()
     BiomeQLeaveRoomPresentation = ModUtil.Original("BiomeQLeaveRoomPresentation")
     ExitBiomeGRoomPresentation = ModUtil.Original("ExitBiomeGRoomPresentation")
     FastExitPresentation = ModUtil.Original("FastExitPresentation")
-    FastExitPresentation = ModUtil.Original("FortressMainDoorOpenPresentation")
+    FortressMainDoorOpenPresentation = ModUtil.Original("FortressMainDoorOpenPresentation")
     HubCombatRoomEntrance = ModUtil.Original("HubCombatRoomEntrance")
     LeaveRoomPresentation = ModUtil.Original("LeaveRoomPresentation")
 
@@ -90,6 +75,8 @@ function revertOverrides()
     -- Thessaly
     ShipsLeaveRoomPresentation = ModUtil.Original("ShipsLeaveRoomPresentation")
     ShipsRoomEntrancePresentation = ModUtil.Original("ShipsRoomEntrancePresentation")
+
+    LeaveRoomSecretExitDoorPresentation = ModUtil.Original("LeaveRoomSecretExitDoorPresentation")
 end
 
 -- This runs only when modutil and the game's lua is ready
