@@ -19,7 +19,7 @@ You can also find me in the [**Hades Modding** Discord](https://discord.com/invi
 ## Setup
 
 * Install R2ModMan and install required mod dependencies
-* Create symlink with _SetupDevEnvironment.ps1
+* Create symlink with `_SetupDevEnvironment.ps1`
 * https://thunderstore.io/c/hades-ii/p/PonyWarrior/PonyMenu/
 
 ## Workflow
@@ -28,7 +28,7 @@ You can also find me in the [**Hades Modding** Discord](https://discord.com/invi
 * You may need to sometimes restart the game in some scenarios.
 * Watch logs with `_TailLogs.ps1`
 * `I` will open up the inventory, and going over to the last tab will let you add remove boons for testing.
-* `CTRL + C` will set a room that you can teleport to for testing.  See debug.lua
+* `CTRL + C` will set a room that you can teleport to for testing.  See **debug.lua**
 * `CTRL + F` will kill all enemies on screen.
 
 # Publishing A Release
@@ -39,7 +39,7 @@ You can also find me in the [**Hades Modding** Discord](https://discord.com/invi
 - Click the **Run workflow** button.
 
 
-## Resources
+# Resources
 
 - https://github.com/SGG-Modding/ModUtil/wiki
 - https://github.com/SGG-Modding/Hell2Modding/tree/master/docs/lua
